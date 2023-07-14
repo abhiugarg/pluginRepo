@@ -60,6 +60,16 @@ func main() {
 			fmt.Printf("CPU Percentage: %s\n", cpuPercentage)
             fmt.Println("____________________________________________")
 
+			// Fetch Host Name
+			fmt.Println("Fetch the host name")
+			commandHost := "hostname"
+			out, err := sshconnection.ExecuteCommand(client,commandHost)
+			if err != nil {
+				fmt.Printf("Failed to execute command: %s\n", err)
+			}
+			fmt.Printf("Host Name: %s\n", out)
+			fmt.Println("__________________________________")
+
 			// Extract os.name
 			fmt.Println("Extract osName")
 			commandos := "cat /etc/os-release"
@@ -95,7 +105,7 @@ func main() {
 			fmt.Println("_____________________________________")
 
 			// Error : Failed to execute command: Process exited with status 1
-			//Extract cpu.io.percent
+			// Extract cpu.io.percent
 			// fmt.Println("Extract the CPU IO Percentage")
 			// commandIO := "iostat -c | grep '^avg-cpu'"
 			// outputIO, err := sshconnection.ExecuteCommand(client, commandIO)
