@@ -233,15 +233,18 @@ func ExtractInterfaceName(output string) (string, error) {
 }
 
 func ExtractInterfaceInputSpeed(output string) (string, error) {
-	//fmt.Println(output)
+	fmt.Println(output)
 
 	lines := strings.Split(output, "\n")
-	for _, line := range lines {
-		if strings.Contains(line, "RX bytes:") {
-			fields := strings.Fields(line)
-			if len(fields) >= 3 {
-				inputSpeed := fields[2]
-				return inputSpeed, nil
+	for i, line := range lines {
+		if strings.Contains(line, "RX:  bytes") {
+			// Check if the next line contains the input speed
+			if i+1 < len(lines) {
+				fields := strings.Fields(lines[i+1])
+				if len(fields) >= 1 {
+					inputSpeed := fields[0]
+					return inputSpeed, nil
+				}
 			}
 		}
 	}
