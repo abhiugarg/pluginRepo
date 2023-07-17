@@ -218,12 +218,8 @@ func main() {
 			}
 			fmt.Printf("Interface Input Speed: %s\n", inputSpeed)
 
-			
-
 	    case "snmp":
 			
-
-
 		case "windows":	
 	}
 }
